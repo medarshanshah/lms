@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import {ErrorMiddleware} from "./middleware/error";
+import userRouter from "./routes/user.route";
 export const app = express();
 
 //body parser
@@ -13,6 +14,9 @@ app.use(cookieParser());
 
 //cors = cross origin resource sharing
 app.use(cors({origin: process.env.ORIGIN})); // from .env file ORIGIN = ['http.//localhost:3000']
+
+//routes
+app.use("/api/v1", userRouter);
 
 // requests
 app.get("/test", (req, res, next) => {
